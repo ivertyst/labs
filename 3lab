@@ -1,0 +1,67 @@
+users=[]
+q=0; qq=0
+w=0;e=10
+str=''; name=''; passw=''
+while True:
+    print('1. Add user')
+    print('2. Delete user')
+    print('3. Print list of users')
+    print('4. Log in')
+    print('5. Exit')
+    try:
+        q=int(input())
+        if q==1:
+            users.append([])
+            print('Enter name')
+            str=input()
+            users[len(users)-1].append(str)
+            print('Enter password')
+            str = input()
+            users[len(users)-1].append(str)
+        if q==2:
+            w=0
+            print("Enter users' name")
+            str = input()
+            for w in range(len(users)):
+                if str in users[w]:
+                    users.pop(w)
+                    print('User deleted')
+        if q==3:
+            w=0
+            for w in range(len(users)):
+                print(w+1,'. ', users[w][0])
+        if q==5:
+            break
+        if q==4:
+            print('Enter name')
+            name=input()
+            print('Enter password')
+            passw=input()
+            w=0
+            for w in range(len(users)):
+                try:
+                    e = users[w].index(str)
+                    if users[w][1]==passw:
+                        while True:
+                            print('1. Change name')
+                            print('2. Change password')
+                            print('3. Log out')
+                            qq=int(input())
+                            if qq==1:
+                                print('Enter new name')
+                                name = input()
+                                users[w][0]=name
+                            if qq==2:
+                                print('Enter new password')
+                                passw = input()
+                                users[w][1]=passw
+                            if qq==3:
+                                break
+                    else:
+                        print('Wrong password')
+                except ValueError:
+                    print('Wrong name')
+    except ValueError:
+        print('Invalid value')
+
+
