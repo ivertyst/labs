@@ -52,6 +52,7 @@ while True:
                                     print('Enter new name')
                                     name = input()
                                     users[w][0] = name
+                                    roles['users'][w]=name
                                 if qq == 2:
                                     print('Enter new password')
                                     passw = input()
@@ -87,6 +88,7 @@ while True:
                                     print('Enter new name')
                                     name = input()
                                     users[w][0] = name
+                                    roles['admins'][w+1]=name
                                 if qq == 3:
                                     print('Enter new password')
                                     passw = input()
