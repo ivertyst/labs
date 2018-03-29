@@ -1,0 +1,37 @@
+import random
+a=[]
+bulls=0
+cows=0
+q=0
+for q in range(4): 
+    bol=False
+    w=random.randint(0,9)
+    e=random.randint(1,9)
+    if q==0:
+        a.append(str(e))
+    else:
+         while True:
+            if str(w) in a:
+                w=random.randint(0,9)
+            else:
+                a.append(str(w))
+                break
+print(a)
+while True:
+    print('Enter number')
+    strin=input()
+    if len(strin)!=4:
+        print('Invalid length')
+        continue
+    if strin==a[0]+a[1]+a[2]+a[3]:
+        print('4 bulls')
+        break
+    else:
+        bulls=0
+        cows=0
+        for q in range(4): 
+            if a[q]==strin[q]:
+                bulls+=1
+            elif a[q] in strin:
+                cows+=1
+    print('B:'+str(bulls)+'; C:'+str(cows))
