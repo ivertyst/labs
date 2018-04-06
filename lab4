@@ -1,19 +1,20 @@
 users = [['admin', 'admin']]
 roles = {'admins': ['admin'], 'users': []}
-q = 0
-qq = 0
+q = ''
+qq = ''
 w = 0
 e = 0
+r=0
 str = ''
 name = ''
 passw = ''
 while True:
-    print('1. Register')
+    print('\n1. Register')
     print('2. Log in')
     print('3. Exit')
     try:
-        q = int(input())
-        if q == 1:
+        q = input()
+        if q == '1':
             print('Enter name')
             str = input()
             for w in range(len(users)):
@@ -28,9 +29,9 @@ while True:
                 users[len(users) - 1].append(str)
             else:
                 print('User already exist')
-        if q == 3:
+        if q == '3':
             break
-        if q == 2:
+        if q == '2':
             print('Enter name')
             name = input()
             print('Enter password')
@@ -42,35 +43,34 @@ while True:
                     e = 1
                     if users[w][1] == passw:
                         if name in roles['users']:
-                            print('You logged in as user')
+                            print('\nYou logged in as user')
                             while True:
-                                print('1. Change name')
+                                print('\n1. Change name')
                                 print('2. Change password')
                                 print('3. Log out')
-                                qq = int(input())
-                                if qq == 1:
-                                    print('Enter new name')
+                                qq = input()
+                                if qq == '1':
+                                    print('\nEnter new name')
                                     name = input()
                                     users[w][0] = name
-                                    roles['users'][w]=name
-                                if qq == 2:
-                                    print('Enter new password')
+                                if qq == '2':
+                                    print('\nEnter new password')
                                     passw = input()
                                     users[w][1] = passw
-                                if qq == 3:
+                                if qq == '3':
                                     break
                         if name in roles['admins']:
-                            print('You logged in as admin')
+                            print('\nYou logged in as admin')
                             while True:
-                                print('1. Create user')
+                                print('\n1. Create user')
                                 print("2. Change name")
                                 print('3. Change password')
                                 print("4. Drop user's password to default")
                                 print('5. Print list of users')
                                 print("6. Change user's role")
                                 print('7. Log out')
-                                qq = int(input())
-                                if qq == 1:
+                                qq = input()
+                                if qq == '1':
                                     e=0
                                     print('Enter name')
                                     str = input()
@@ -84,39 +84,35 @@ while True:
                                         roles['users'].append(str)
                                     else:
                                         print('User already exist')
-                                if qq == 2:
-                                    print('Enter new name')
+                                if qq == '2':
+                                    print('\nEnter new name')
                                     name = input()
                                     users[w][0] = name
-                                    roles['admins'][w+1]=name
-                                if qq == 3:
-                                    print('Enter new password')
+                                if qq == '3':
+                                    print('\nEnter new password')
                                     passw = input()
                                     users[w][1] = passw
-                                if qq == 4:
-                                    print("Enter user's name")
+                                if qq == '4':
+                                    print("\nEnter user's name")
                                     str=input()
-                                    for w in range(len(users)):
-                                        if str in users[w][0]:
-                                            users[w][1] = 'qwerty'
-                                if qq == 5:
+                                    for r in range(len(users)):
+                                        if str in users[r][0]:
+                                            users[r][1] = 'qwerty'
+                                if qq == '5':
                                     w = 0
-                                    for w in range(len(users)):
-                                        print(w + 1, '. ', users[w][0])
-                                if qq == 6:
-                                    print("Enter user's name")
+                                    for r in range(len(users)):
+                                        print(r + 1, '. ', users[r][0])
+                                if qq == '6':
+                                    print("\nEnter user's name")
                                     str=input()
                                     if str in roles['admins']:
                                         roles['users'].append(str)
-                                        for w in range(len(roles['admins'])):
-                                            if str in roles['admins'][w]:
-                                                roles['admins'].pop(w)
+                                        roles['admins'].remove(str)
+                                        continue
                                     if str in roles['users']:
                                         roles['admins'].append(str)
-                                        for w in range(len(roles['users'])):
-                                            if str in roles['users'][w]:
-                                                roles['users'].pop(w)
-                                if qq == 7:
+                                        roles['users'].remove(str)
+                                if qq == '7':
                                     break
                     else:
                         q = -1
