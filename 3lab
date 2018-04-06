@@ -1,6 +1,6 @@
-users=[]
+users=[['admin', 'admin']]
 q=0; qq=0
-w=0;e=10
+w=0;e=0;r=0
 str=''; name=''; passw=''
 while True:
     print('1. Add user')
@@ -11,13 +11,20 @@ while True:
     try:
         q=int(input())
         if q==1:
-            users.append([])
+            e=0
             print('Enter name')
             str=input()
-            users[len(users)-1].append(str)
-            print('Enter password')
-            str = input()
-            users[len(users)-1].append(str)
+            for w in range(len(users)):
+                if str == users[w][0]:
+                    e = 1
+            if e != 1:
+                users.append([])
+                users[len(users)-1].append(str)
+                print('Enter password')
+                str = input()
+                users[len(users)-1].append(str)
+            else:
+                print('User already exist')
         if q==2:
             w=0
             print("Enter users' name")
@@ -28,8 +35,11 @@ while True:
                     print('User deleted')
         if q==3:
             w=0
-            for w in range(len(users)):
-                print(w+1,'. ', users[w][0])
+            if len(users)==0:
+                print('No users in list')
+            else:
+                for w in range(len(users)):
+                    print(w+1,'. ', users[w][0])
         if q==5:
             break
         if q==4:
@@ -38,14 +48,34 @@ while True:
             print('Enter password')
             passw=input()
             w=0
+            e=0
             for w in range(len(users)):
-                try:
-                    e = users[w].index(str)
+                if name == users[w][0]:
+                    e=1
                     if users[w][1]==passw:
                         while True:
                             print('1. Change name')
                             print('2. Change password')
                             print('3. Log out')
+                            qq=int(input())
+                            if qq==1:
+                                print('Enter new name')
+                                name = input()
+                                users[w][0]=name
+                            if qq==2:
+                                print('Enter new password')
+                                passw = input()
+                                users[w][1]=passw
+                            if qq==3:
+                                break
+                    else:
+                        q=-1
+            if e==0 or q == -1:
+                print('Wrong name or password')
+    except ValueError:
+        print('Invalid value')
+
+                 print('3. Log out')
                             qq=int(input())
                             if qq==1:
                                 print('Enter new name')
