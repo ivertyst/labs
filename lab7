@@ -1,0 +1,141 @@
+users = [['admin', 'admin']]
+roles = {'admins': ['admin'], 'users': []}
+q = ''
+qq = ''
+w = 0
+e = 0
+r=0
+str = ''
+name = ''
+passw = ''
+def reg_user():
+        e=0
+        print('Enter name')
+        str = input()
+        for w in range(len(users)):
+            if str == users[w][0]:
+                e = 1
+        if e != 1:
+            users.append([])
+            users[len(users) - 1].append(str)
+            roles['users'].append(str)
+            print('Enter password')
+            str = input()
+            users[len(users) - 1].append(str)
+        else:
+            print('User already exist')
+                
+def edit_name():
+    print('\nEnter new name')
+    name = input()
+    users[w][0] = name
+    
+def edit_pass():
+    print('\nEnter new password')
+    passw = input()
+    users[w][1] = passw
+
+def cre_user():
+    e=0
+    print('Enter name')
+    str = input()
+    for w in range(len(users)):
+        if str == users[w][0]:
+            e = 1
+        if e != 1:
+            users.append([])
+            users[len(users) - 1].append(str)
+            users[len(users) - 1].append('qwerty')
+            roles['users'].append(str)
+        else:
+            print('User already exist')
+
+def drop_pass():
+    print("\nEnter user's name")
+    str=input()
+    for r in range(len(users)):
+        if str in users[r][0]:
+            users[r][1] = 'qwerty'
+
+def print_list():
+    for r in range(len(users)):
+        print(r + 1, '. ', users[r][0])
+
+def chng_role():
+    r=1
+    print("\nEnter user's name")
+    str=input()
+    if str in roles['admins']:
+        roles['users'].append(str)
+        roles['admins'].remove(str)
+        r=0
+    if str in roles['users'] and r!=0:
+        roles['admins'].append(str)
+        roles['users'].remove(str)
+
+
+while True:
+    print('\n1. Register')
+    print('2. Log in')
+    print('3. Exit')
+    try:
+        q = input()
+        if q == '1':
+            reg_user()
+        if q == '3':
+            break
+        if q == '2':
+            print('Enter name')
+            name = input()
+            print('Enter password')
+            passw = input()
+            w = 0
+            e = 0
+            for w in range(len(users)):
+                if name == users[w][0]:
+                    e = 1
+                    if users[w][1] == passw:
+                        if name in roles['users']:
+                            print('\nYou logged in as user')
+                            while True:
+                                print('\n1. Change name')
+                                print('2. Change password')
+                                print('3. Log out')
+                                qq = input()
+                                if qq == '1':
+                                    edit_name()
+                                if qq == '2':
+                                    edit_pass()
+                                if qq == '3':
+                                    break
+                        if name in roles['admins']:
+                            print('\nYou logged in as admin')
+                            while True:
+                                print('\n1. Create user')
+                                print("2. Change name")
+                                print('3. Change password')
+                                print("4. Drop user's password to default")
+                                print('5. Print list of users')
+                                print("6. Change user's role")
+                                print('7. Log out')
+                                qq = input()
+                                if qq == '1':
+                                    cre_user()
+                                if qq == '2':
+                                    edit_name()
+                                if qq == '3':
+                                    edit_pass()
+                                if qq == '4':
+                                    drop_pass()
+                                if qq == '5':
+                                    print_list()
+                                if qq == '6':
+                                    chng_role()
+                                if qq == '7':
+                                    break
+                    else:
+                        q = -1
+            if e == 0 or q == -1:
+                print('Wrong name or password')
+    except ValueError:
+        print('Invalid value')
