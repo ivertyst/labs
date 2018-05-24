@@ -1,0 +1,35 @@
+from module import Matrix
+print('Enter count of rows for matrix A')
+r1=int(input())
+print('Enter count of colums for matrix A')
+c1=int(input())
+print('Enter count of rows for matrix B')
+r2=int(input())
+print('Enter count of colums for matrix B')
+c2=int(input())
+A = Matrix(r1, c1)
+B = Matrix(r2, c2)
+print("A")
+A.display()
+print("B")
+B.display()
+C = A + B
+if C != 1 and C is not None:
+    print("C = A + B")
+    C.display()
+D = A - B
+if D != 1 and D is not None:
+    print("D = A - B")
+    D.display()
+E = A * 2
+print("E = A * 2")
+E.display()
+F = A * B
+if F != 1 and F is not None:
+    print("F = A * B")
+    F.display()
+print("A^T")
+A.transp()
+detA = A.det()
+if detA != 'string':
+    print("Det A = " + str(detA))
